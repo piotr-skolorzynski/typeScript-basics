@@ -1,11 +1,17 @@
-const character = 'luigi';
+let character = 'mario';
+let age = 30;
+let isBlackBelt = false;
 
-console.log(character);
+// character = 20; cannot be changed wrong type
+character = 'luigi';
 
-const inputs = document.querySelectorAll('input');
+// age = 'yoshi'; cannot be changed wrong type
+age = 40;
 
-console.log(inputs);
+isBlackBelt = true;
 
-inputs.forEach(input => {
-    console.log(input)
-});
+const circ = (diameter: number) => {
+    return diameter * Math.PI;
+}
+
+console.log(circ(7.5))
