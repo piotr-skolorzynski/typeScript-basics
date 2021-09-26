@@ -1,26 +1,33 @@
-//type Aliases
+// Function Signatures
+//Można bardziej wyspecyfikować jaki ma być rodzaj funkcji
 
-// const logDetails = (uid: string | number, item: string) => {
-//     console.log(`${item} has a uid of ${uid}`);
-// }
+// let greet: Function;
 
-// const greet = (user: {name: string, uid: string | number}) => {
-//     console.log(`${user.name} says hello `);
-// }
-
-//żeby zmniejszyć ilość nadmiarowego kodu można tworzyć aliasy dla typów i wykorzystywać je do zmniejszenia pisaniny
-
-type StringOrNum = string | number;
-type objWithName = {name: string, uid: StringOrNum};
-
-const logDetails = (uid: StringOrNum, item: string) => {
-    console.log(`${item} has a uid of ${uid}`);
+// example 1
+let greet: (a:string, b:string) => void; //deklarujemy że funkcja będzie przyjmowała 2 argumenty typu string i nic nie będzie zwracała
+greet = (name:string, greeting:string) => { //tutaj mamy przypisanie do zmiennej greet funkcji pasującej do zadeklarowanego wzoru
+    console.log(`${name} says ${greeting}`);
 }
 
-const greet = (user: objWithName) => {
-    console.log(`${user.name} says hello `);
-}
+//example 2
+let calc: (a:number, b:number, c:string) => number;
+calc = (numOne: number, numTwo: number, action: string):number => {
+    if (action === 'add') {
+        return numOne + numTwo;
+    } else {
+        return numOne - numTwo;
+    }
+} //dodawanie za nawiasem z argumentami :number nie jest konieczne bo typeScript przypisuje typ dynamicznie wychodzącej wartości
 
-const greetAgain = (user: objWithName) => {
-    console.log(`${user.name} says hello again`)
+//example 3
+let logDetails: (obj: {name: string, age: number}) => void;
+// logDetails = (ninja:{name: string, age: number}) => {
+//     console.log(`${ninja.name} is ${ninja.age} years old`)
+// }
+
+//druga opcja z aliasem typu
+
+type person = {name: string, age:number};
+logDetails = (ninja: person) => {
+    console.log(`${ninja.name} is ${ninja.age} years old`)
 }
