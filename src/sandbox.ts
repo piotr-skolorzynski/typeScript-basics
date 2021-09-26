@@ -1,52 +1,26 @@
-// functions
+//type Aliases
 
-// let greet = () => {
-//     console.log('hello, world');
-// };
+// const logDetails = (uid: string | number, item: string) => {
+//     console.log(`${item} has a uid of ${uid}`);
+// }
 
-// greet = 'hello'; - impossible, we declared that greet is a function
+// const greet = (user: {name: string, uid: string | number}) => {
+//     console.log(`${user.name} says hello `);
+// }
 
-let greet: Function; //type is in a capital letter
+//żeby zmniejszyć ilość nadmiarowego kodu można tworzyć aliasy dla typów i wykorzystywać je do zmniejszenia pisaniny
 
-greet = () => {
-    console.log('hello, again');
+type StringOrNum = string | number;
+type objWithName = {name: string, uid: StringOrNum};
+
+const logDetails = (uid: StringOrNum, item: string) => {
+    console.log(`${item} has a uid of ${uid}`);
 }
 
-const add = (a:number, b:number) => {
-    console.log(a+b);
-};
-
-add(5, 10);
-
-// add(10, '15'); you cannot pass an argument which does not match declared type
-
-// tutaj przykład funkcji z opcjonalnymi typami ale postawienie znaku zapytania oznacza również opcjonalny argument oraz przypisanie wartości domyślnej ale wtedy nie używamy znaku zapytania. Pamiętaj o dawaniu domyślnych parametrów na końcu deklaracji
-// const add2 = (a:number, b:number, c?:number|string) => {
-//     console.log(a+b);
-//     console.log(c)
-// };
-const add2 = (a:number, b:number, c:number|string = 10) => {
-    console.log(a+b);
-    console.log(c)
-};
-
-add2(5, 20);
-
-const minus = (a:number, b:number) => {
-    return a - b;
+const greet = (user: objWithName) => {
+    console.log(`${user.name} says hello `);
 }
 
-let result = minus(10, 7); //typ zmiennej będzie taki sam jak wyniku funkcji minus
-// result = 'sth else' nie można tak zrobić bo result jest typu number
-
-// można również zadeklarować resultat funckji przy jej deklarowaniu
-
-const minus2 = (a:number, b:number): number => {
-    return a - b;
+const greetAgain = (user: objWithName) => {
+    console.log(`${user.name} says hello again`)
 }
-
-//Jeżeli funkcja niczego nie zwraca to można zadeklarować bezpośrednio w funkcji poprzez słówko jak z c++ tj. void
-const add3 = (a: number, b: number, c: number | string = 10): void => {
-    console.log(a + b);
-    console.log(c)
-};
