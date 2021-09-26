@@ -1,49 +1,32 @@
-//explicit types
-let character: string;
-let age: number;
-let isLoggedIn: boolean;
+// Dynamic (any) types //reverts typeScript to JavaScript erasing typeScript features, use in certain situations
 
-// age = 'luigi'; impossible cause we declared type number
-age = 30;
+let age: any = 25;
 
-// isLoggedIn = 25; wrong type, should be boolean
-isLoggedIn = true;
+age = true;
+console.log(age);
+age = 'hello';
+console.log(age);
+age = {name: 'luigi'};
+console.log(age);
 
-// arrays
-// let ninjas: string[]; //array of strings only sometimes it is best to also initialize with empty array to possible using array methods on this variable let ninjas: string[] = []
+let mixed: any[] = []; //we can push any value
 
-let ninjas: string[] = []
-
-// ninjas = [10, 20]; //wrong types
-ninjas = ['yoshi', 'mario'];
-ninjas.push('shaun');
-
-
-//union types
-let mixed: (string|number)[] = [];
-mixed.push('hello');
+mixed.push('milk');
 mixed.push(20);
-// mixed.push(true); wrong type, not declared
-console.log(mixed)
+mixed.push(true);
+console.log(mixed);
 
-let uid: string|number;
-uid = '123';
-uid = 123;
-// uid = false; wrong type
-
-// objects
-let ninjaOne: object;
-ninjaOne = {
+let ninja: {name: any, age: any};
+ninja = {
     name: 'yoshi',
-    age: 30
+    age: 20
 }
-// ninjaOne = 'milk' wrong type
-// ninjaOne = []; will work because it is an object
+console.log(ninja);
 
-let ninjaTwo: {
-    name: string,
-    age: number,
-    beltColor: string
-}; //we declare not only object but also its type
+//typeScript ignores types
+ninja = {
+    name: 25,
+    age: 'yoshi'
+}
+console.log(ninja);
 
-ninjaTwo = { name: 'mario', age: 20, beltColor: 'black'};
