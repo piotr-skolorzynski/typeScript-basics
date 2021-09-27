@@ -26,32 +26,55 @@ form.addEventListener('submit', (e: Event) => {
 
 //genrecics
 //<T> (konwencja, litera może być inna) przechwytuje co wchodzi do środka dzięki temu na obiekcie można wykonać np. docOne.name = 'mleko', ale jednocześnie nie pilnuje że w tym przypadku interesuje nas tylko obiekt więc trzeba dać extends object, można to zrobić jeszcze precyzyjniej: <T extends {name: string}> (obj: T) co mówi że musi być to obiekt z parą name i typu string
-const addUID = <T extends object>(obj: T) => {
-    let uid = Math.floor(Math.random() * 100);
-    return {...obj, uid};
-}
+// const addUID = <T extends object>(obj: T) => {
+//     let uid = Math.floor(Math.random() * 100);
+//     return {...obj, uid};
+// }
 
-let docOne = addUID({name: 'yoshi', age: 40);
-console.log(docOne.name)
+// let docOne = addUID({name: 'yoshi', age: 40);
+// console.log(docOne.name)
 
 //generics with interfaces
 //chcemy żeby data był generic tzn. zależnie co zostanie przesłane a nie konkretnego typu i tutaj wchodzi generics
+// interface Resource<T> {
+//     uid: number;
+//     resourceName: string;
+//     data: T;
+// }
+
+// const docThree: Resource<string> = {
+//     uid: 1,
+//     resourceName: 'person',
+//     data: 'shaun'
+// }
+
+// const docFour: Resource<string[]> = {
+//     uid: 2,
+//     resourceName: 'shoppingList',
+//     data: ['milk', 'bread']
+// }
+
+// console.log(docThree, docFour);
+
+//enums
+enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
+
 interface Resource<T> {
     uid: number;
-    resourceName: string;
+    resourceType: ResourceType;
     data: T;
 }
 
-const docThree: Resource<string> = {
+const docOne: Resource<object> = {
     uid: 1,
-    resourceName: 'person',
-    data: 'shaun'
+    resourceType: ResourceType.BOOK,
+    data: {title: 'name of the wind'}
 }
 
-const docFour: Resource<string[]> = {
-    uid: 2,
-    resourceName: 'shoppingList',
-    data: ['milk', 'bread']
+const docTwo: Resource<object> = {
+    uid: 10,
+    resourceType: ResourceType.PERSON,
+    data: {name: 'yoshi'}
 }
 
-console.log(docThree, docFour);
+console.log(docOne, docTwo);
