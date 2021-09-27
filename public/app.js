@@ -15,3 +15,21 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
     console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
 });
+//classes
+var Invoice = /** @class */ (function () {
+    function Invoice(c, d, a) {
+        this.client = c;
+        this.details = d;
+        this.amount = a;
+    }
+    Invoice.prototype.format = function () {
+        return this.client + " owes \u00A3" + this.amount + " for " + this.details;
+    };
+    return Invoice;
+}());
+var invOne = new Invoice('mario', 'work on the mario website', 250);
+var invTwo = new Invoice('mario', 'work on the luigi website', 300);
+var invoices = []; //dzięki takiej deklaracji do tej tablicy mogą trafić tylko i wyłącznie obiekty klasy Invoice
+invoices.push(invOne);
+invoices.push(invTwo);
+console.log(invoices);
