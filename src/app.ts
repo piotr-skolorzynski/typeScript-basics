@@ -15,11 +15,15 @@ const list = new ListTemplate(ul);
 
 form.addEventListener('submit', (e: Event) => {
     e.preventDefault();
+    //using tuples to shorten code
+    let values: [string, string, number];
+    values = [tofrom.value, details.value, amount.valueAsNumber]
+
     let doc: HasFormatter; //tworzymy zmienną z typem HasFormatter
     if (type.value === 'invoice') {
-        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+        doc = new Invoice(...values);
     } else {
-        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+        doc = new Payment(...values);
     }
     list.render(doc, type.value, 'end')
 })
@@ -56,25 +60,39 @@ form.addEventListener('submit', (e: Event) => {
 
 // console.log(docThree, docFour);
 
-//enums
-enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
+// //enums
+// enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
 
-interface Resource<T> {
-    uid: number;
-    resourceType: ResourceType;
-    data: T;
-}
+// interface Resource<T> {
+//     uid: number;
+//     resourceType: ResourceType;
+//     data: T;
+// }
 
-const docOne: Resource<object> = {
-    uid: 1,
-    resourceType: ResourceType.BOOK,
-    data: {title: 'name of the wind'}
-}
+// const docOne: Resource<object> = {
+//     uid: 1,
+//     resourceType: ResourceType.BOOK,
+//     data: {title: 'name of the wind'}
+// }
 
-const docTwo: Resource<object> = {
-    uid: 10,
-    resourceType: ResourceType.PERSON,
-    data: {name: 'yoshi'}
-}
+// const docTwo: Resource<object> = {
+//     uid: 10,
+//     resourceType: ResourceType.PERSON,
+//     data: {name: 'yoshi'}
+// }
 
-console.log(docOne, docTwo);
+// console.log(docOne, docTwo);
+
+//tuples - krotka – struktura danych będąca odzwierciedleniem matematycznej n-ki, tj. uporządkowanego ciągu wartości. Krotki przechowują stałe wartości o różnych typach danych – nie można zmodyfikować żadnego elementu, odczyt natomiast wymaga podania indeksu liczbowego żądanego elementu.
+
+// let arr = ['ryu', 25, true];
+// arr[0] = false;
+// arr[1] = 'yoshi';
+// arr = [30, false, 'yoshi'];
+
+// // w tuple nie można działać tak elastycznie, dany typ musi być cały czas na tej samej pozycji
+// let tup: [string, number, boolean] = ['ryu', 25, true];
+// tup[0] = 'ken'; //zadziała bo zgadza się typ
+
+// let student: [string, number];
+// student = ['chun-li', 223423];

@@ -46,23 +46,28 @@ form.addEventListener('submit', (e) => {
 //     data: ['milk', 'bread']
 // }
 // console.log(docThree, docFour);
-//enums
-var ResourceType;
-(function (ResourceType) {
-    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
-    ResourceType[ResourceType["AUTHOR"] = 1] = "AUTHOR";
-    ResourceType[ResourceType["FILM"] = 2] = "FILM";
-    ResourceType[ResourceType["DIRECTOR"] = 3] = "DIRECTOR";
-    ResourceType[ResourceType["PERSON"] = 4] = "PERSON";
-})(ResourceType || (ResourceType = {}));
-const docOne = {
-    uid: 1,
-    resourceType: ResourceType.BOOK,
-    data: { title: 'name of the wind' }
-};
-const docTwo = {
-    uid: 10,
-    resourceType: ResourceType.PERSON,
-    data: { name: 'yoshi' }
-};
-console.log(docOne, docTwo);
+// //enums
+// enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
+// interface Resource<T> {
+//     uid: number;
+//     resourceType: ResourceType;
+//     data: T;
+// }
+// const docOne: Resource<object> = {
+//     uid: 1,
+//     resourceType: ResourceType.BOOK,
+//     data: {title: 'name of the wind'}
+// }
+// const docTwo: Resource<object> = {
+//     uid: 10,
+//     resourceType: ResourceType.PERSON,
+//     data: {name: 'yoshi'}
+// }
+// console.log(docOne, docTwo);
+//tuples - krotka – struktura danych będąca odzwierciedleniem matematycznej n-ki, tj. uporządkowanego ciągu wartości. Krotki przechowują stałe wartości o różnych typach danych – nie można zmodyfikować żadnego elementu, odczyt natomiast wymaga podania indeksu liczbowego żądanego elementu.
+let arr = ['ryu', 25, true];
+arr[0] = false;
+arr[1] = 'yoshi';
+arr = [30, false, 'yoshi'];
+// w tuple nie można działać tak elastycznie, dany typ musi być cały czas na tej samej pozycji
+let tup = ['ryu', 25, true];
