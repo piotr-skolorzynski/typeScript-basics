@@ -17,10 +17,7 @@ form.addEventListener('submit', function (e) {
 });
 //classes
 var Invoice = /** @class */ (function () {
-    function Invoice(c, d, a) {
-        this.client = c;
-        this.details = d;
-        this.amount = a;
+    function Invoice() {
     }
     Invoice.prototype.format = function () {
         return this.client + " owes \u00A3" + this.amount + " for " + this.details;
